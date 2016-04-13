@@ -1,0 +1,219 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:behavior="clr-namespace:OpenMusic.Wpf.Behaviors"
+    xmlns:converter="clr-namespace:OpenMusic.Wpf.Converters"
+    xmlns:core="clr-namespace:OpenMusic.Wpf.Core"
+    xmlns:local="clr-namespace:OpenMusic.Wpf.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/Player.Icons.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/Player.Resource.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type local:Player}">
+        <Setter Property="Background"
+                Value="#CC0F0F0F"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Player}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- prev -->
+                            <Button Grid.Column="1" 
+                                    Command="{x:Static local:Player.PlayPrevCommand}" 
+                                    ToolTip="Previous File (k)"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource CircleButtonStyle}"
+                                    Height="40"
+                                    Width="40">
+                                <Rectangle Width="12" Height="12">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_fastforward}" />
+                                    </Rectangle.Fill>
+                                    <Rectangle.LayoutTransform>
+                                        <ScaleTransform ScaleX="-1" />
+                                    </Rectangle.LayoutTransform>
+                                </Rectangle>
+                            </Button>
+                            <!-- play/pause -->
+                            <Grid Grid.Column="2">
+                                <Button Command="{x:Static local:Player.PlayOrPauseCommand}" 
+                                        ToolTip="{TemplateBinding State, Converter={x:Static converter:DisplayConverter.Instance}}"
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Grid>
+                                        <Rectangle x:Name="playIcon"
+                                                       Width="12"
+                                                       Height="12"
+                                                       Margin="0"
+                                                       Fill="{StaticResource PlayBrush}" 
+                                                       Visibility="{TemplateBinding State, Converter={x:Static converter:ValueToVisibilityConverter.UnInstance}, ConverterParameter={x:Static core:PlayState.Play}}" />
+
+                                        <Rectangle x:Name="pauseIcon"
+                                                       Width="12"
+                                                       Height="12"
+                                                       Margin="0"
+                                                       Visibility="{TemplateBinding State, Converter={x:Static converter:ValueToVisibilityConverter.Instance}, ConverterParameter={x:Static core:PlayState.Play}}"
+                                                       Fill="{StaticResource PauseBrush}" />
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                            
+                            <Grid Grid.Column="3" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- stop --><!--
+                                <Button Grid.Column="0"
+                                        Command="{TemplateBinding StopCommand}"
+                                        ToolTip="Stop"
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="45"
+                                        Width="45">
+                                    <Rectangle Width="13" Height="13">
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_control_stop}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Button>-->
+
+                                <!-- next -->
+                                <Button Grid.Column="1"
+                                        Command="{x:Static local:Player.PlayNextCommand}"
+                                        ToolTip="Next File (j)"
+                                        VerticalAlignment="Bottom"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Rectangle Width="12" Height="12" Fill="{StaticResource PlayNextBrush}" />
+                                </Button>
+
+                                <!-- shuffle -->
+                                <Button Grid.Column="2"
+                                        Command="{x:Static local:Player.ShuffleCommand}"
+                                        ToolTip="Shuffle (s)"
+                                        VerticalAlignment="Bottom"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Rectangle Width="12" Height="12" Fill="{StaticResource ShuffleBrush}" />
+                                </Button>
+
+                                <!-- repeat -->
+                                <Button Grid.Column="3"
+                                        Command="{x:Static local:Player.RepeatCommand}"
+                                        ToolTip="Repeat (r)"
+                                        VerticalAlignment="Bottom"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Rectangle Width="12" Height="12" Fill="{StaticResource RepeatBrush}" />
+                                </Button>
+
+                                <!-- show equalizer -->
+                                <Button Grid.Column="4"
+                                        Command="{x:Static local:Player.ShowEqualizerCommand}"
+                                        ToolTip="Equalizer (e)"
+                                        VerticalAlignment="Bottom"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Rectangle Width="12" Height="12">
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_equalizer}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Button>
+
+                                <!-- show media library -->
+                                <Button Grid.Column="5"
+                                        ToolTip="Song list (l)"
+                                        VerticalAlignment="Bottom"
+                                        Style="{StaticResource CircleButtonStyle}"
+                                        Height="40"
+                                        Width="40">
+                                    <Rectangle Width="12" Height="12">
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_database}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Button>
+                            </Grid>
+
+                            <Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- position -->
+                                <Grid Grid.Column="0" HorizontalAlignment="Center" RenderOptions.ClearTypeHint="Enabled" TextOptions.TextFormattingMode="Display">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- position -->
+                                    <local:TimeSlider x:Name="PART_TimeSlider" Grid.Column="0" Width="200"
+                                                      VerticalAlignment="Center" Margin="15,2,15,2"/>
+                                    <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    </TextBlock>
+                                 </Grid>
+
+                                <!-- volume -->
+                                <Grid Grid.Column="1" Margin="20,0,0,0" HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            HorizontalContentAlignment="Left"
+                                            Command="{x:Static local:Player.MuteCommand}"
+                                            ToolTip="Mute (m)"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource VolumeButtonStyle}">
+                                        <Grid>
+                                            <Rectangle Margin="2" Width="15" Height="15" 
+                                                       Fill="{StaticResource MuteBrush}"
+                                                       Visibility="{TemplateBinding Engine, Converter={x:Static converter:BoolToVisibilityConverter.UnInstance}}" />
+                                            <Rectangle Margin="2" Width="15" Height="15"
+                                                       Fill="{StaticResource VolumeBrush}"
+                                                       Visibility="{TemplateBinding Engine, Converter={x:Static converter:BoolToVisibilityConverter.Instance}}" />
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

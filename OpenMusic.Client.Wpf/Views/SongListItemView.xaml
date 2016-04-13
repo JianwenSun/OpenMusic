@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="OpenMusic.Wpf.Views.SongListItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:view="clr-namespace:OpenMusic.Wpf.Views"
+             xmlns:helper="clr-namespace:OpenMusic.Wpf.Helpers"
+             xmlns:behavior="clr-namespace:OpenMusic.Wpf.Behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="120" Background="White">
+
+    <UserControl.InputBindings>
+        <MouseBinding MouseAction="LeftDoubleClick" 
+                      Command="{Binding Path=SongListInfoCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" 
+                      CommandParameter="{Binding}"/>
+    </UserControl.InputBindings>
+        
+    <UserControl.Resources>
+        <Storyboard x:Key="MouseOverAnimation">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="PlayButtonHolder" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)">
+                <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#1F1F1F"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MouseOutAnimation">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="PlayButtonHolder" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)">
+                <LinearColorKeyFrame KeyTime="0:0:0.3" Value="Transparent"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.MouseEnter">
+            <BeginStoryboard Storyboard="{StaticResource MouseOverAnimation}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UserControl.MouseLeave">
+            <BeginStoryboard Storyboard="{StaticResource MouseOutAnimation}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid Width="80">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image Stretch="UniformToFill">
+                <e:Interaction.Behaviors>
+                    <behavior:ImageLoadBehavior Url="{Binding PictureS300}"/>
+                </e:Interaction.Behaviors>
+            </Image>
+            <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Viewbox Width="18" Height="18">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M12,1C7,1 3,5 3,10V17A3,3 0 0,0 6,20H9V12H5V10A7,7 0 0,1 12,3A7,7 0 0,1 19,10V12H15V20H18A3,3 0 0,0 21,17V10C21,5 16.97,1 12,1Z" Fill="White" />
+                    </Canvas>
+                </Viewbox>
+                <Label Opacity="0.9" Content="{Binding ListenNumber}" Background="Transparent" Foreground="White"/>
+            </DockPanel>
+            <Viewbox Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0.9">
+                <Canvas Width="24" Height="24" Background="Transparent">
+                    <Ellipse x:Name="PlayButtonHolder" Margin="2" Width="20" Height="20" Fill="Transparent" Opacity="0.7"/>
+                    <Path Data="M12,20.14C7.59,20.14 4,16.55 4,12.14C4,7.73 7.59,4.14 12,4.14C16.41,4.14 20,7.73 20,12.14C20,16.55 16.41,20.14 12,20.14M12,2.14A10,10 0 0,0 2,12.14A10,10 0 0,0 12,22.14A10,10 0 0,0 22,12.14C22,6.61 17.5,2.14 12,2.14M10,16.64L16,12.14L10,7.64V16.64Z" Fill="White" />
+                </Canvas>
+            </Viewbox>
+        </Grid>
+        
+        <Label Grid.Row="1" Height="30" Opacity="0.7" Content="{Binding Title}"  Background="White" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

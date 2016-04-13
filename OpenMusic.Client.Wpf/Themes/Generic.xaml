@@ -1,0 +1,12 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:OpenMusic.Wpf">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/BoxControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/BoxControlItem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/Player.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/OpenMusic.Wpf;component/Themes/TimeSlider.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

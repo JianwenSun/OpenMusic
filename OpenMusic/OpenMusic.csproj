@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4895B93-25BF-4CB9-9B06-BACD62D95230}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenMusic</RootNamespace>
+    <AssemblyName>OpenMusic</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Client.cs" />
+    <Compile Include="Contents\AlbumContent.cs" />
+    <Compile Include="Contents\ArtistContent.cs" />
+    <Compile Include="Contents\CatalogContent.cs" />
+    <Compile Include="Contents\Content.cs" />
+    <Compile Include="Contents\SongInfoContent.cs" />
+    <Compile Include="Contents\SongListInfoContent.cs" />
+    <Compile Include="Contents\SongListContent.cs" />
+    <Compile Include="Contents\SongSuggestionContent.cs" />
+    <Compile Include="Contents\SongContent.cs" />
+    <Compile Include="Converters\DataConverterAttribute.cs" />
+    <Compile Include="Converters\IDataConverter.cs" />
+    <Compile Include="Converters\DataConverter.cs" />
+    <Compile Include="Extends\ICopyAble.cs" />
+    <Compile Include="Datas\IItem.cs" />
+    <Compile Include="Extends\DataExtends.cs" />
+    <Compile Include="Datas\IVideo.cs" />
+    <Compile Include="Datas\ISongUrl.cs" />
+    <Compile Include="Datas\SongUrl.cs" />
+    <Compile Include="Datas\Video.cs" />
+    <Compile Include="Services\ArtistService.cs" />
+    <Compile Include="Services\IArtistService.cs" />
+    <Compile Include="Services\BillboardService.cs" />
+    <Compile Include="Services\ServiceProvider.cs" />
+    <Compile Include="Services\SongListService.cs" />
+    <Compile Include="Services\ISongListService.cs" />
+    <Compile Include="Services\SongService.cs" />
+    <Compile Include="Services\ISongService.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IBillboardService.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Datas\ISuggestionArtist.cs" />
+    <Compile Include="Datas\ISuggestionAlbum.cs" />
+    <Compile Include="Datas\ISuggestionSong.cs" />
+    <Compile Include="Datas\ISongList.cs" />
+    <Compile Include="Datas\Album.cs" />
+    <Compile Include="Datas\Artist.cs" />
+    <Compile Include="Datas\IAlbum.cs" />
+    <Compile Include="Datas\IArtist.cs" />
+    <Compile Include="IClient.cs" />
+    <Compile Include="Datas\ISong.cs" />
+    <Compile Include="Datas\SuggestionAlbum.cs" />
+    <Compile Include="Datas\SuggestionArtist.cs" />
+    <Compile Include="Datas\SuggestionSong.cs" />
+    <Compile Include="Datas\TArea.cs" />
+    <Compile Include="Datas\TArtist.cs" />
+    <Compile Include="Datas\TLanguage.cs" />
+    <Compile Include="Datas\TStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Datas\Song.cs" />
+    <Compile Include="Datas\SongList.cs" />
+    <Compile Include="Contents\CatalogSuggestionContent.cs" />
+    <Compile Include="Datas\TScene.cs" />
+    <Compile Include="Datas\TEmotion.cs" />
+    <Compile Include="Datas\TTopic.cs" />
+    <Compile Include="Services\ServiceAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

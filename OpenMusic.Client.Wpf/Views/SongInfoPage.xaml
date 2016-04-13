@@ -1,0 +1,26 @@
+﻿<Page x:Class="OpenMusic.Wpf.Views.SongInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:OpenMusic.Wpf.Views"
+      xmlns:behavior="clr-namespace:OpenMusic.Wpf.Behaviors"
+      xmlns:model="clr-namespace:OpenMusic.Wpf.ViewModels"
+      xmlns:ioc="clr-namespace:OpenMusic.Wpf.Ioc"
+      xmlns:app="clr-namespace:OpenMusic.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="SongInfoPage"
+      DataContext="{Binding Path=Injector, Source={x:Static app:ApplicationContent.Instance}, 
+                                   Converter={x:Static ioc:IocInjectorConverter.Instance}, 
+                                   ConverterParameter={x:Type model:SongInfoPageViewModel}}">
+
+    <Grid Background="White">
+        <Image Stretch="Uniform" VerticalAlignment="Top">
+            <e:Interaction.Behaviors>
+                <behavior:ImageLoadBehavior Url="{Binding PictureUrl}"/>
+            </e:Interaction.Behaviors>
+        </Image>
+    </Grid>
+</Page>

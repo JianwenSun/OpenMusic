@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{266E74DB-C3A5-452B-8793-B7A6258595EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenMusic.Baidu</RootNamespace>
+    <AssemblyName>OpenMusic.Baidu</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Debug</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\NotNullAttribute.cs" />
+    <Compile Include="Attributes\ParameterAttribute.cs" />
+    <Compile Include="BaiduClient.cs" />
+    <Compile Include="BaiduServiceProvider.cs" />
+    <Compile Include="Contents\CatalogContentConverter.cs" />
+    <Compile Include="Contents\ContentConverterAttribute.cs" />
+    <Compile Include="Contents\ContentConverter.cs" />
+    <Compile Include="Contents\IContentConverter.cs" />
+    <Compile Include="Contents\SongInfosContentConverter.cs" />
+    <Compile Include="Contents\SongInfoContentConverter.cs" />
+    <Compile Include="Contents\SongListInfoContentConverter.cs" />
+    <Compile Include="Contents\SongListContentConverter.cs" />
+    <Compile Include="Contents\SongContentConverter.cs" />
+    <Compile Include="Datas\Converters\SongUrlConverter.cs" />
+    <Compile Include="Datas\Converters\ArtistConverter.cs" />
+    <Compile Include="Datas\Converters\AlbumConverter.cs" />
+    <Compile Include="Datas\Converters\SongListConverter.cs" />
+    <Compile Include="Datas\Converters\SongInforsConverter.cs" />
+    <Compile Include="Datas\album.cs" />
+    <Compile Include="Datas\artist.cs" />
+    <Compile Include="Contents\IContentResult.cs" />
+    <Compile Include="Datas\diy.gedan.cs" />
+    <Compile Include="Datas\diy.gedanInfo.cs" />
+    <Compile Include="Datas\search.catalogSug.cs" />
+    <Compile Include="Datas\search.common.cs" />
+    <Compile Include="Datas\search.merge.cs" />
+    <Compile Include="Datas\search.suggestion.cs" />
+    <Compile Include="Datas\song.cs" />
+    <Compile Include="Datas\song.getinfos.cs" />
+    <Compile Include="Datas\song.getinfo.cs" />
+    <Compile Include="Datas\songinfos.cs" />
+    <Compile Include="Datas\url.cs" />
+    <Compile Include="Rest\BaiduRestEventArgs.cs" />
+    <Compile Include="Rest\BaiduRestEventHandler.cs" />
+    <Compile Include="Rest\IBaiduRestClient.cs" />
+    <Compile Include="Rest\Methods\Method.Diy.cs" />
+    <Compile Include="Rest\Parameters\FromVersion.cs" />
+    <Compile Include="Rest\Methods\Method.Song.cs" />
+    <Compile Include="Rest\BaiduRestRequest.cs" />
+    <Compile Include="IBaiduClient.cs" />
+    <Compile Include="Rest\Parameters\Format.cs" />
+    <Compile Include="Rest\Parameters\IParameter.cs" />
+    <Compile Include="Rest\Parameters\From.cs" />
+    <Compile Include="Rest\Methods\Method.Artist.cs" />
+    <Compile Include="Rest\Methods\Method.cs" />
+    <Compile Include="Rest\Methods\Method.Search.cs" />
+    <Compile Include="Rest\Parameters\ParameterCollection.cs" />
+    <Compile Include="Rest\Parameters\Parameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rest\BaiduRestClient.cs" />
+    <Compile Include="Rest\BaiduRestResponse.cs" />
+    <Compile Include="Segments\Server.cs" />
+    <Compile Include="Segments\Version.cs" />
+    <Compile Include="Segments\SegmentCollection.cs" />
+    <Compile Include="Segments\Segment.cs" />
+    <Compile Include="Services\BaiduRestService.cs" />
+    <Compile Include="Services\BaiduSearchService.cs" />
+    <Compile Include="Services\BaiduSongListService.cs" />
+    <Compile Include="Services\BaiduSongService.cs" />
+    <Compile Include="Services\IBaiduService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMusic\OpenMusic.csproj">
+      <Project>{f4895b93-25bf-4cb9-9b06-bacd62d95230}</Project>
+      <Name>OpenMusic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.27-beta\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documents\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

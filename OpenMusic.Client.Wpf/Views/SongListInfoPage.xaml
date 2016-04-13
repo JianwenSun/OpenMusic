@@ -1,0 +1,74 @@
+﻿<Page x:Class="OpenMusic.Wpf.Views.SongListInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:e="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:view="clr-namespace:OpenMusic.Wpf.Views"
+      xmlns:helper="clr-namespace:OpenMusic.Wpf.Helpers"
+      xmlns:behavior="clr-namespace:OpenMusic.Wpf.Behaviors"
+      xmlns:command="clr-namespace:OpenMusic.Wpf.Commands"
+      xmlns:model="clr-namespace:OpenMusic.Wpf.ViewModels"
+      xmlns:ioc="clr-namespace:OpenMusic.Wpf.Ioc"
+      xmlns:control="clr-namespace:OpenMusic.Wpf.Controls"
+      xmlns:app="clr-namespace:OpenMusic.Wpf"
+      xmlns:metroapp="sunjianwen143@hotmail.com"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="SongListInfoPage"
+      DataContext="{Binding Path=Injector, Source={x:Static app:ApplicationContent.Instance}, 
+                                   Converter={x:Static ioc:IocInjectorConverter.Instance}, 
+                                   ConverterParameter={x:Type model:SongListInfoPageViewModel}}">
+
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/MetroApp;component/Themes/Light.xaml" />
+                    <ResourceDictionary Source="pack://application:,,,/MetroApp;component/Themes/Controls.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Image Stretch="UniformToFill">
+            <e:Interaction.Behaviors>
+                <behavior:ImageLoadBehavior Url="{Binding PictureUrl}"/>
+            </e:Interaction.Behaviors>
+        </Image>
+
+        <Rectangle Fill="{DynamicResource {x:Static metroapp:BrushKeys.MainBrushKey}}" Opacity=".3"/>
+
+        <DataGrid BorderThickness="0"
+                  Background="Transparent"
+                  metroapp:DataGridHelper.MouseOverBackground="#22F1F1F1"
+                  metroapp:DataGridHelper.SelectedBackground="#55119EDA"
+                  metroapp:DataGridHelper.SelectedForeground="White"
+                  VerticalAlignment="Bottom"
+                  Padding="15,50,15,15"
+                  IsReadOnly="True"
+                  RenderOptions.ClearTypeHint="Enabled"
+                  TextOptions.TextFormattingMode="Display"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="None"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  ItemsSource="{Binding CollectionView}"
+                  AutoGenerateColumns="False">
+            <e:Interaction.Triggers>
+                <e:EventTrigger EventName="MouseDoubleClick">
+                    <e:InvokeCommandAction Command="{x:Static command:PlayerCommands.PlaySongCommand}"
+                                           CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGrid}}"/>
+                </e:EventTrigger>
+            </e:Interaction.Triggers>
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title"
+                                        Binding="{Binding Title}" />
+                <DataGridTextColumn Header="AlbumTitle"
+                                        Binding="{Binding AlbumTitle}" />
+                <DataGridTextColumn Header="Author"
+                                        Binding="{Binding Author}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
